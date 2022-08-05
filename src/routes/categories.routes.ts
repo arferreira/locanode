@@ -20,4 +20,15 @@ categoriesRoutes.post('/', (req, res) => {
   }
 });
 
+
+// Endpoint to list categories
+categoriesRoutes.get('/', (req, res) => {
+  try {
+    const categories = categoriesRepository.list();
+    return res.status(200).json({ categories });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default categoriesRoutes;
