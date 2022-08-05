@@ -4,6 +4,7 @@ import { Category } from "../modules/cars/model/Category";
 import { CategoriesRepository } from "../modules/cars/repositories/CategoriesRepository";
 
 import { createCategoryController } from "../modules/cars/useCases/createCategory";
+import { listCategoryController } from "../modules/cars/useCases/listCategory";
 
 const categoriesRoutes = Router();
 
@@ -18,12 +19,7 @@ categoriesRoutes.post('/', (req, res) => {
 
 // Endpoint to list categories
 categoriesRoutes.get('/', (req, res) => {
-  try {
-    const categories = categoriesRepository.list();
-    return res.status(200).json({ categories });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  return listCategoryController.handle(req, res);
 });
 
 export default categoriesRoutes;
