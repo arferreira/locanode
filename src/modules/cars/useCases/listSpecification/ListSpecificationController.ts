@@ -1,0 +1,4 @@
+class ListSpecificationController { }
+
+
+export { ListSpecificationController }
