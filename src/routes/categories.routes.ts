@@ -11,10 +11,17 @@ const categoriesRepository = new CategoryRepository();
 // Endpoint to create categories
 categoriesRoutes.post('/', (req, res) => {
   const { name, description } = req.body;
+  const categoryAlreadyExists = categoriesRepository.findByName(name);
 
   try {
-    categoriesRepository.create({ name, description });
-    return res.status(201).send();
+    if (!categoryAlreadyExists) {
+      categoriesRepository.create({ name, description });
+      return res.status(201).send();
+    }
+    else {
+      return res.status(500).json({ message: 'Category already exists' });
+    }
+
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
