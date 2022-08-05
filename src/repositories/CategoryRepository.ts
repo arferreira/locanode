@@ -1,10 +1,7 @@
 import { Category } from "../model/Category";
+import { ICreateCategoryDTO } from "./ICategoriesRepository";
 
-// DTO
-interface ICreateCategoryDTO {
-  name: string;
-  description: string;
-}
+
 
 
 class CategoryRepository {
