@@ -12,7 +12,7 @@ app.use(router);
 
 
 app.get('/', (req, res) => {
-  return res.json({ message: 'Running' })
+  return res.json({ message: 'Running API' })
 });
 
 
