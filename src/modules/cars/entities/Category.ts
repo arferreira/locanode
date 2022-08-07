@@ -1,4 +1,4 @@
-import { v4 } from 'uuid';
+import { v4 as uuidV4 } from 'uuid';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 
@@ -16,6 +16,12 @@ export class Category {
 
   @CreateDateColumn()
   created_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4()
+    }
+  }
 
 }
 
