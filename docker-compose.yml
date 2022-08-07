@@ -1,10 +1,53 @@
-version: '3.9'
+version: "3.9"
 
 services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    links:
+      - "database"
+    networks:
+      - locanode
+
+  database:
+    image: postgres
+    container_name: locanode_database
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=locanode
+    volumes:
+      - pgdata:/data/postgres
+    networks:
+      - locanode
+
   app:
-    container_name: locanode
     build: .
+    container_name: locanode
+    restart: always
     ports:
       - 3333:3333
+      - 9229:9229 #Você pode inserir essa porta tbm pra poder usar o debug
     volumes:
-      - ./:/usr/app
+      - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+    networks:
+      - locanode
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  locanode:
+    driver: bridge

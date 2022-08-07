@@ -1,5 +1,5 @@
 TN:
-SF:src/modules/cars/model/Category.ts
+SF:src/modules/cars/entities/Category.ts
 FN:4,<instance_members_initializer>
 FN:10,Category
 FNF:2

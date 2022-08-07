@@ -4,7 +4,7 @@
     <metrics statements="70" coveredstatements="68" conditionals="10" coveredconditionals="10" methods="9" coveredmethods="8" elements="89" coveredelements="86" complexity="0" loc="70" ncloc="70" packages="3" files="3" classes="3"/>
     <package name="model">
       <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-      <file name="Category.ts" path="/Users/antonioricardo/Developer/Estudo/ignite-node/locanode/src/modules/cars/model/Category.ts">
+      <file name="Category.ts" path="/Users/antonioricardo/Developer/Estudo/ignite-node/locanode/src/modules/cars/entities/Category.ts">
         <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
