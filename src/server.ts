@@ -1,9 +1,12 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
+import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 import "./database";
 import "./shared/container";
 import swaggerFile from "../swagger.json";
+import { AppError } from "../src/errors/AppError";
 import { router } from "./routes";
+
 
 const app = express();
 
@@ -13,10 +16,17 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(router);
 
 
-app.get('/', (req, res) => {
-  return res.json({ message: 'Running API' })
-});
-
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+  if (err instanceof AppError) {
+    return response.status(err.statusCode).json({
+      error: err.message
+    });
+  }
+  return response.status(500).json({
+    status: "error",
+    message: `Internal Server Error: ${err.message}`
+  });
+})
 
 
 app.listen(3333, () => console.info('API listening on port ' + 3333));

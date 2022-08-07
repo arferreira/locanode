@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppError";
 import { inject, injectable } from "tsyringe";
 
 import { Category } from "../../entities/Category";
@@ -22,7 +23,7 @@ class CreateCategoryUseCase {
       await this.categoriesRepository.create({ name, description });
     }
     else {
-      throw new Error("Category already exists!");
+      throw new AppError("Category already exists!");
     }
   }
 
