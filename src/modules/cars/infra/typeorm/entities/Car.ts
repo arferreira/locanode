@@ -9,11 +9,15 @@ export class Car {
   fine_amount: number;
   brand: string;
   category_id: string;
+  available: boolean;
+  created_at: Date;
 
 
   constructor() {
     if (!this.id) {
       this.id = uuid();
+      this.available = true;
+      this.created_at = new Date();
     }
   }
 }

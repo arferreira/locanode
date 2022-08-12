@@ -1,6 +1,8 @@
 import "reflect-metadata";
+import { AppError } from "../../../../shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
 import { ICarsRepository } from "../../repositories/ICarsRepository";
+import { Car } from "../../infra/typeorm/entities/Car";
 
 
 interface IRequest {
@@ -21,7 +23,13 @@ export class CreateCarUseCase {
     private carsRepository: ICarsRepository
   ) { }
 
-  async execute({ name, description, daily_rate, license_plate, fine_amount, brand, category_id }: IRequest): Promise<void> {
-    await this.carsRepository.create({ name, description, daily_rate, license_plate, fine_amount, brand, category_id });
+  async execute({ name, description, daily_rate, license_plate, fine_amount, brand, category_id }: IRequest): Promise<Car> {
+    const carAlreadyExists = await this.carsRepository.findByLicensePlate(license_plate);
+    if (carAlreadyExists) {
+      throw new AppError(`Car ${license_plate} already exists`);
+    }
+    const car = await this.carsRepository.create({ name, description, daily_rate, license_plate, fine_amount, brand, category_id });
+
+    return car;
   };
 }
