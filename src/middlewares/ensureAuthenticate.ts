@@ -21,6 +21,9 @@ export async function ensureAuthenticate(request: Request, response: Response, n
     if (!user) {
       throw new AppError("User not found", 401);
     }
+    request.user = {
+      id: user.id,
+    };
     next();
   } catch (error) {
     throw new AppError("Access not authorizated", 401);

@@ -21,6 +21,9 @@ class User {
   driver_licence: string;
 
   @Column()
+  avatar?: string;
+
+  @Column()
   is_admin: boolean;
 
   @CreateDateColumn()
@@ -33,6 +36,9 @@ class User {
     }
     if (!this.is_admin) {
       this.is_admin = false;
+    }
+    if (!this.avatar) {
+      this.avatar = "http://localhost";
     }
   }
 

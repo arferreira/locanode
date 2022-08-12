@@ -6,7 +6,7 @@
   "password": "123456",
   "database": "locanode",
   "synchronize": true,
-  "migrationsRun": false,
+  "migrationsRun": true,
   "migrations": [
     "./src/database/migrations/*.ts"
   ],
