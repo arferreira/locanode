@@ -9,11 +9,13 @@ export class InMemoryUsersRepository implements IUsersRepository {
     Object.assign(user, data);
     this.users.push(user);
   }
-  findByEmail(email: string): Promise<User> {
-    throw new Error("Method not implemented.");
+
+  async findByEmail(email: string): Promise<User> {
+    return this.users.find(user => user.email === email);
+
   }
-  findById(id: string): Promise<User> {
-    throw new Error("Method not implemented.");
+  async findById(id: string): Promise<User> {
+    return this.users.find(user => user.id === id);
   }
 
 
