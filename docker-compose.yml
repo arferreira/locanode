@@ -7,15 +7,15 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - database
+      - postgres
     links:
-      - "database"
+      - postgres
     networks:
       - locanode
 
-  database:
+  postgres:
     image: postgres
-    container_name: locanode_database
+    container_name: postgres
     restart: always
     ports:
       - 5432:5432
@@ -38,9 +38,9 @@ services:
     volumes:
       - .:/usr/app
     links:
-      - database
+      - postgres
     depends_on:
-      - database
+      - postgres
     networks:
       - locanode
 

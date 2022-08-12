@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { v4 as uuidV4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Entity("users")
@@ -32,7 +32,7 @@ class User {
 
   constructor() {
     if (!this.id) {
-      this.id = uuidV4()
+      this.id = uuidv4()
     }
     if (!this.is_admin) {
       this.is_admin = false;

@@ -1,4 +1,4 @@
-import { v4 as uuidV4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 
@@ -19,7 +19,7 @@ export class Category {
 
   constructor() {
     if (!this.id) {
-      this.id = uuidV4()
+      this.id = uuidv4()
     }
   }
 
